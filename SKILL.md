@@ -4,9 +4,9 @@ description: "Essential Pawn best practices, high-performance optimization techn
 version: 1.0.0
 ---
 
-# Pawn Scripting Mastery: Optimization & Best Practices
+# Pawn Skills
 
-This guide provides a comprehensive overview of modern Pawn scripting standards, high-performance optimization techniques, and architectural best practices specifically tailored for the **open.mp** framework.
+A comprehensive guide to modern Pawn standards, performance optimization, and architectural best practices for open.mp.
 
 ## Before You Start
 
@@ -18,8 +18,6 @@ This guide provides a comprehensive overview of modern Pawn scripting standards,
 3. Main thread freezing from unthreaded MySQL queries.
 4. Callback conflicts from manual hooking instead of using `y_hooks`.
 5. Unnecessary processing overhead from misusing the Streamer plugin.
-
----
 
 ## 1. Naming & Consistency
 Clear naming is the foundation of maintainable code.
@@ -40,8 +38,6 @@ Treat macros purely as **"Text Replacement"**.
 *   **Safety:** Always wrap parameters in parentheses `(%0)` to avoid logic errors during replacement.
 *   **Structure:** Do **not** use trailing semicolons in `#define`. Use backslashes (`\`) for multi-line macros.
 *   **Comments:** Use macros for readability, but remember that commented-out code (`//`) is removed during preprocessing and consumes **zero** RAM.
-
----
 
 ## 2. Advanced Optimization (Anti-Lag)
 Pawn is an interpreted language; every opcode counts.
@@ -72,7 +68,6 @@ The standard `MAX_PLAYERS` loop is the most common cause of lag ($O(N)$ where $N
 *   **Comma-Separated:** Declare related variables in a single statement (e.g., `new a, b, c;`) to reduce opcode overhead.
 *   **On-Demand:** Declare variables only at the moment they are needed to conserve AMX stack space.
 
----
 
 ## 3. Syntactic Sugar (Modern Pawn)
 Pawn supports unique syntax that makes code cleaner and faster.
@@ -84,8 +79,6 @@ Pawn supports unique syntax that makes code cleaner and faster.
     *   ✅ `if (!(0 < health < 100))` (for "Outside" range)
 *   **Inline Assignments:** Fetch and check in one line.
     *   ✅ `if ((id = GetTarget(playerid)) != INVALID_PLAYER_ID) { ... }`
-
----
 
 ## 4. Architectural Standards
 *   **Stock vs Public:** Use `stock` for internal logic. Use `public` only for Timers, RPCs, or Engine Callbacks. `stock` allows the compiler to remove unused code.
@@ -102,8 +95,6 @@ Pawn supports unique syntax that makes code cleaner and faster.
     ```
 *   **Functional Pawn (y_inline):** Use `y_inline` to create closures for MySQL or Dialog callbacks, keeping related logic in one place.
 *   **Compile-time Guards:** Avoid `CallLocalFunction` if the name is known. Use `#if defined FunctionName` to call it directly. It avoids expensive internal string comparisons.
-
----
 
 ## 5. Comparison Examples: Common vs. Best Practice
 
@@ -175,8 +166,6 @@ Pawn supports unique syntax that makes code cleaner and faster.
     }
     ```
 
----
-
 ## 6. Pro Tips: Color Management
 Use a dual-constant system for colors to keep code readable.
 *   `COLOR_RED` (Hex): `0xFF0000FF` (for function arguments)
@@ -186,8 +175,6 @@ Use a dual-constant system for colors to keep code readable.
 ```pawn
 SendClientMessage(playerid, COLOR_WHITE, "This is "CL_RED"Red "CL_WHITE"and this is White");
 ```
-
----
 
 ## 7. open.mp & Database Standards
 *   **OPENMP_COMPAT:** Define `#define OPENMP_COMPAT` for legacy SA-MP native support in open.mp environments.
@@ -199,10 +186,6 @@ SendClientMessage(playerid, COLOR_WHITE, "This is "CL_RED"Red "CL_WHITE"and this
     #undef MAX_PLAYERS
     #define MAX_PLAYERS 100 // Instead of 500 or 1000
     ```
-
----
-
----
 
 ## 8. Streamer Plugin Strategy
 Do not use the Streamer plugin unless absolutely necessary. Using it for small numbers of objects (e.g., < 1000) adds unnecessary overhead.
@@ -222,8 +205,6 @@ If you aren't sure if you'll need a streamer later, write your code using a dyna
 ### C. Hybrid Placement
 *   **Static Zones (High Traffic):** Use `CreateObject` for objects at Spawn points or main cities. Since players are always there, the streamer would create them anyway—using native saves the "check" cost.
 *   **Remote Zones:** Use `CreateDynamicObject` for distant areas that players rarely visit to save on the 1000-object limit.
-
----
 
 ## 9. Anti-Patterns to Avoid
 1.  **Thread Blocking:** Never run heavy SQL queries without `mysql_pquery` (threaded).
