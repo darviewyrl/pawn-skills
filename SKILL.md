@@ -1,5 +1,5 @@
 ---
-name: pawn-best-practices
+name: pawn-skills
 description: "Essential Pawn best practices, high-performance optimization techniques, and architectural guidelines for both SA-MP and open.mp. Use when writing new systems, refactoring code, optimizing server lag, or working with databases and streamer plugins. Triggers on: pawn, samp, open.mp, y_hooks, mysql, optimization, streamer."
 version: 1.0.0
 ---
