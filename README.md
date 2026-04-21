@@ -48,14 +48,3 @@ foreach(new i : Player) {
 ## 📄 License
 
 This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE) - see the https://www.google.com/search?q=LICENSE file for details. You are free to use, modify, and distribute these standards in your own projects.
-
-```
-
----
-
-**โครงสร้างที่ผมใส่ไว้ให้:**
-1. **Introduction:** อธิบายสั้นๆ ว่า Repo นี้คืออะไร
-2. **Using with AI Agents:** **(ตรงนี้สำคัญมากครับ)** เป็นการบอกวิธีให้คนก๊อปไฟล์ `SKILL.md` ไปใส่ในระบบของตัวเอง
-3. **What's Inside?:** สารบัญบอกว่ามีเนื้อหาอะไรบ้าง
-4. **Quick Example:** ยกตัวอย่าง Before/After โค้ดเก่า vs โค้ดใหม่ ให้เห็นภาพทันทีว่าอ่าน Repo นี้แล้วได้อะไร
-5. **License:** ใส่เป็น MIT License เพื่อให้ทุกคนนำไปใช้ได้สบายใจ
